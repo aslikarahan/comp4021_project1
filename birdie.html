@@ -14,13 +14,27 @@
   from { transform: translateX(640px); }
   to   { transform: translateX(-250px); }
   }
+  @keyframes food-animation {
+
+  from { transform: translateX(70px); }
+  to   { transform: translateX(-900px);}
+  }
   .obstacle{
     animation-name: obstacle-animation;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-    animation-duration: 4s;
+    animation-duration: 3.5s;
     animation-play-state: running;
-    fill:"blue";
+  }
+  #food{
+
+    animation-name: food-animation;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 3.5s;
+    animation-play-state: running;
+
+
   }
   </style>
   <script>
@@ -31,6 +45,14 @@
                 $(".obstacle").css("animationPlayState", "running");
                   $(".obstacle").show();
             }, Math.random() * 2000);
+  }
+  function makeFood() {
+
+    // You need to start the obstacle animation after a random time here
+    setTimeout(function() {
+                $("#food").css("animationPlayState", "running");
+                  $("#food").show();
+            }, Math.random() * 300);
   }
 
   $(document).ready(function () {
@@ -45,6 +67,7 @@
           $(".obstacle").on("animationiteration", function() {
             $(".obstacle").hide();
             var diff=Math.random()*250-125;
+
             var newHeight1 =90+diff;
             var newHeight2 =90-diff;
             var newPosition2 =306-newHeight2;
@@ -56,6 +79,20 @@
               $(".obstacle").css("animationPlayState", "paused");
 
               makeObstacle();
+          });
+          $("#food").on("animationiteration", function() {
+            $("#food").hide();
+              $("#food").css("cy", Math.random()*300);
+              var r = Math.floor(Math.random() * 255);
+
+    var g = Math.floor(Math.random() * 255);
+
+    var b = Math.floor(Math.random() * 255);
+              $("#food").css("fill",'rgb(' + r + ', ' + g + ' , ' + b + ')');
+
+              $("#food").css("animationPlayState", "paused");
+
+              makeFood();
           });
 
           // Stop the player animation
@@ -100,6 +137,25 @@
    <rect id="obstacle1" class="obstacle" height="90" width="40" y="10" x="273" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#7f3f00"/>
      <rect stroke="null" id="obstacle2" class="obstacle" height="90" width="40" y="217" x="273" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#7f3f00"/>
 
+ <ellipse id="food" stroke="#000000" ry="7" rx="7.5" id="svg_1" cy="104" cx="929.5" stroke-width="2" fill="#bf00bf"/>
+    <!-- <g class="food" id="food1" stroke="null">
+       <ellipse id="svg_13" stroke="null" ry="13.5" rx="18.500001" cy="134.499999" cx="872.500001" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#f2ae6f"/>
+       <rect id="svg_14" stroke="null" height="8.485715" width="36.439394" y="131.799999" x="854.560606" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#472b13"/>
+       <rect id="svg_15" stroke="null" height="5.4" width="37" y="129.485713" x="853.999998" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#1fd137"/>
+       <rect id="svg_16" stroke="null" height="3.085714" width="37.000004" y="132.571428" x="853.999999" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#cbea1e"/>
+      </g> -->
+      <!-- <g class="food" id="food2" stroke="null">
+        <ellipse id="svg_13" stroke="null" ry="13.5" rx="18.500001" cy="134.499999" cx="872.500001" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#f2ae6f"/>
+        <rect id="svg_14" stroke="null" height="8.485715" width="36.439394" y="131.799999" x="854.560606" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#472b13"/>
+        <rect id="svg_15" stroke="null" height="5.4" width="37" y="129.485713" x="853.999998" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#1fd137"/>
+        <rect id="svg_16" stroke="null" height="3.085714" width="37.000004" y="132.571428" x="853.999999" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#cbea1e"/>
+       </g> -->
+       <!-- <g class="food" id="food23" stroke="null">
+         <ellipse id="svg_13" stroke="null" ry="13.5" rx="18.500001" cy="134.499999" cx="872.500001" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#f2ae6f"/>
+         <rect id="svg_14" stroke="null" height="8.485715" width="36.439394" y="131.799999" x="854.560606" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#472b13"/>
+         <rect id="svg_15" stroke="null" height="5.4" width="37" y="129.485713" x="853.999998" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#1fd137"/>
+         <rect id="svg_16" stroke="null" height="3.085714" width="37.000004" y="132.571428" x="853.999999" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#cbea1e"/>
+        </g> -->
 
    </g>
   </svg>
