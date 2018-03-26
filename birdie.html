@@ -36,8 +36,72 @@
 
 
   }
-  #test{
-  
+  .start-button {
+  font-family: Impact;
+	height: 80px;
+	width: 180px;
+	cursor: pointer;
+	margin: 0px auto;
+}
+.start-button .outer {
+  top: 100px;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	background: rgba(0,0,0,0.65);
+	border-radius: 14px;
+	box-shadow: inset rgba(0,0,0,0.85) 0px 1px 5px;
+	-webkit-transform: perspective(500px) rotateX(35deg);
+}
+.start-button .outer .height {
+	position: relative;
+	height: 100%;
+	margin-top: -15px;
+	padding-bottom: 15px;
+	background: #39a02d;
+	border-radius: 16px;
+	box-shadow: rgba(0,0,0,0.85) 0px 1px 1px, inset rgba(0,0,0,0.35) 0px -2px 8px;
+	-webkit-transition: all 0.1s ease-in-out;
+}
+.start-button:hover .outer .height {
+	margin-top: -10px;
+	padding-bottom: 10px;
+	box-shadow: rgba(0,0,0,0.25) 0px 1px 1px, inset rgba(0,0,0,0.35) 0px -2px 6px;
+}
+.start-button:active .outer .height {
+	margin-top: 0px;
+	padding-bottom: 0px;
+}
+.start-button .outer .height .inner {
+	line-height: 2.8em;
+	font-size: 30px;
+	letter-spacing: .05em;
+	position: relative;
+	height: 100%;
+	text-align: center;
+	text-shadow: #8aff7b 0px 0px 1px;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#80ec75), color-stop(100%,#43d034)); /* Chrome,Safari4+ */
+	border-radius: 12px;
+	box-shadow: inset rgba(255,255,255,0.85) 0px 0px 1px;
+	-webkit-transition: all 0.1s ease-in-out;
+}
+.start-button:hover .outer .height .inner{
+	text-shadow: #99f48d 0px 0px 1px;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#43d034), color-stop(100%,#67e45c)); /* Chrome,Safari4+ */
+	background: linear-gradient(top, #43d034 0%,#67e45c 100%); /* W3C */
+}
+.start-button:active .outer .height .inner{
+	text-shadow: #319926 0px 1px 0px;
+	border-radius: 16px;
+	box-shadow: inset rgba(0,0,0,0.9) 0px 0px 8px;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1d7d12), color-stop(100%,#4fd342)); /* Chrome,Safari4+ */
+	background: linear-gradient(top, #1d7d12 0%,#4fd342 100%); /* W3C */
+}
+
+
+  #start-page{
+    border: 3px dashed #444;
   }
   </style>
   <script>
@@ -65,7 +129,10 @@
               if (e.keyCode == 32)
                   jump();
           });
-
+          $("#start-button").on("click",function(){
+            $("#start-page").css("display","none");
+            $("#play-page").css("display","block");
+          })
           // Stop the obstacle animation and restart later
           $(".obstacle").on("animationiteration", function() {
             $(".obstacle").hide();
@@ -113,8 +180,19 @@
   </script>
 </head>
 <body>
-<!--test!-->
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400">
+<div id="start-page" style="background: grey; width: 1000px; height: 400px;">
+  <h1 style="font-family: Verdana, Geneva, sans-serif;margin-top: 0px;padding-top: 50px; text-align:center">Press the start button to start.</h1>
+<div id="start-button" class="start-button">
+  <div class="outer">
+      <div class="height">
+        <div class="inner">
+          START
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <svg id="play-page" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400">
    <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
 
    <g id="playarea">
