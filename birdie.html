@@ -22,12 +22,12 @@
   }
 
   @keyframes food-animation {
-  	from {
-  		transform: translateX(70px);
-  	}
-  	to {
-  		transform: translateX(-900px);
-  	}
+  	from { transform: translateX(70px);}
+  	to { transform: translateX(-900px);}
+  }
+  @keyframes gameover-animation {
+    from { transform:  font-size: 1px; opacity: 0; }
+    to   { transform: font-size: 80px; opacity: 1; }
   }
 
   .obstacle {
@@ -136,6 +136,17 @@
      padding-top: 70px;
      text-align:center;
   }
+  #gameover-container {
+    transform: translate(500px,180px);
+  }
+  #gameover {
+    animation-name: gameover-animation;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
+
+}
   </style>
   <script>
   function makeObstacle() {
@@ -157,8 +168,6 @@ function makeFood() {
 }
 
 $(document).ready(function () {
-
-
 	function startTimer() {
 		var presentTime = $("#timer").html();
 		var timeArray = presentTime.split(/[:]+/);
@@ -167,10 +176,13 @@ $(document).ready(function () {
 		if (s == 59) {
 			m = m - 1
 		}
-		//if(m<0){alert('timer completed')}
-
-		$("#timer").html(m + ":" + s);
-		setTimeout(startTimer, 1000);
+		if(m<0){
+      clearTimeout(counterTimeout);
+      gameover();
+    }
+    if (m>=0){
+      $("#timer").html(m + ":" + s);
+		  counterTimeout = setTimeout(startTimer, 1000);}
 	}
 
 	function checkSecond(sec) {
@@ -182,6 +194,13 @@ $(document).ready(function () {
 		};
 		return sec;
 	}
+  function gameover(){
+    $("#gameover").css("animationPlayState", "running");
+    $(".obstacle").css("animationPlayState", "paused");
+    $("#food").css("animationPlayState", "paused");
+    $("#birdie").css("animationPlayState", "paused");
+    $("#gameover-overlay").fadeIn();
+  }
 	// Handle the spacebar key for controlling the player
 	$(document).on("keydown", function (e) {
 		// The player jumps if the spacebar key is down
@@ -297,6 +316,11 @@ $(document).ready(function () {
   			<rect id="svg_16" stroke="null" height="3.085714" width="37.000004" y="132.571428" x="853.999999" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#cbea1e"/>
   			</g> -->
   	</g>
+    <rect id="gameover-overlay" style="display:none" transform="translate(996,396) scale(1.0211693048477173,1.0152671337127686) translate(-996,-396) " width="900" height="300" fill="black" fill-opacity="0.9" y="11.00001" position="absolute" x="50" stroke-width="10"/>
+    <g id="gameover-container">
+
+      <text id="gameover" x="0" y="0" fill="#aaa" font-size="80px" text-anchor="middle" >Game Over</text>
+    </g>
   </svg>
 
 </body>
