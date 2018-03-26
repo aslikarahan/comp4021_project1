@@ -3,8 +3,74 @@
 <head>
   <title>Hello</title>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+  body{
+  width: 100%;
+  height: 100%;
+  background-color:lightblue;
+    margin: 0;
+  }
+  @keyframes obstacle-animation {
+  from { transform: translateX(640px); }
+  to   { transform: translateX(-250px); }
+  }
+  .obstacle{
+    animation-name: obstacle-animation;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 4s;
+    animation-play-state: running;
+    fill:"blue";
+  }
+  </style>
+  <script>
+  function makeObstacle() {
 
+    // You need to start the obstacle animation after a random time here
+    setTimeout(function() {
+                $(".obstacle").css("animationPlayState", "running");
+                  $(".obstacle").show();
+            }, Math.random() * 2000);
+  }
+
+  $(document).ready(function () {
+          // Handle the spacebar key for controlling the player
+          $(document).on("keydown", function(e) {
+              // The player jumps if the spacebar key is down
+              if (e.keyCode == 32)
+                  jump();
+          });
+
+          // Stop the obstacle animation and restart later
+          $(".obstacle").on("animationiteration", function() {
+            $(".obstacle").hide();
+            var diff=Math.random()*250-125;
+            var newHeight1 =90+diff;
+            var newHeight2 =90-diff;
+            var newPosition2 =306-newHeight2;
+
+            $("#obstacle1").css("height", newHeight1+"px");
+            $("#obstacle2").css("height", newHeight2+"px");
+            $("#obstacle2").css("y", newPosition2+"px");
+
+              $(".obstacle").css("animationPlayState", "paused");
+
+              makeObstacle();
+          });
+
+          // Stop the player animation
+          $("#player").on("animationiteration", function() {
+              $("#player").css("animationPlayState", "paused");
+          });
+
+          // Start the obstacle animation
+          makeObstacle();
+
+          // Start the game over checking
+    //    requestAnimationFrame(checkGameover);
+      });
+
+  </script>
 </head>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400">
@@ -29,11 +95,11 @@
    <text transform="matrix(-0.7068270779824497,0.06625673876391248,-0.06464874623045398,-0.7244078158948376,226.07019942796015,368.74773251942725) " xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_15" y="223" x="73" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#000000" stroke="null">y</text>
   </g>
  </g>
- <g>
 
-   <rect id="svg_3" height="87" width="48" y="10" x="273" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#7f3f00"/>
-     <rect stroke="null" id="svg_4" height="89" width="48" y="216.500004" x="273" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#7f3f00"/>
-   </g>
+
+   <rect id="obstacle1" class="obstacle" height="90" width="40" y="10" x="273" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#7f3f00"/>
+     <rect stroke="null" id="obstacle2" class="obstacle" height="90" width="40" y="217" x="273" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#7f3f00"/>
+
 
    </g>
   </svg>
