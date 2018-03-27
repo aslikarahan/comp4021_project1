@@ -3,33 +3,33 @@
 <head>
   <title>Hello</title>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/jquery.svg.css">
-<script src="jquery.svg.js"></script>
-<script  src="jquery.svg.min.js"></script>
-<script  src="jquery.svfanim.js"></script>
+  <link rel="stylesheet"  href="jquery.svg.css">
+
+  <script  src="jquery.svg.min.js"></script>
+  <script  src="jquery.svganim.js"></script>
 
   <style>
   body {
-  	width: 100%;
-  	height: 100%;
-  	background-color: lightblue;
-  	margin: 0;
-  	font-family: Verdana, Geneva, sans-serif;
+    width: 100%;
+    height: 100%;
+    background-color: lightblue;
+    margin: 0;
+    font-family: Verdana, Geneva, sans-serif;
   }
 
   @keyframes obstacle-animation {
-  	from {
-  		transform: translateX(640px);
-  	}
-  	to {
-  		transform: translateX(-250px);
-  	}
+    from {
+      transform: translateX(640px);
+    }
+    to {
+      transform: translateX(-250px);
+    }
   }
 
 
   @keyframes food-animation {
-  	from { transform: translateX(70px);}
-  	to { transform: translateX(-900px);}
+    from { transform: translateX(70px);}
+    to { transform: translateX(-900px);}
   }
   @keyframes gameover-animation {
     from { transform:  font-size: 1px; opacity: 0; }
@@ -38,110 +38,110 @@
 
 
   .obstacle {
-  	animation-name: obstacle-animation;
-  	animation-timing-function: linear;
-  	animation-iteration-count: infinite;
-  	animation-duration: 3.5s;
-  	animation-play-state: running;
+    animation-name: obstacle-animation;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 3.5s;
+    animation-play-state: running;
   }
 
   #food {
-  	animation-name: food-animation;
-  	animation-timing-function: linear;
-  	animation-iteration-count: infinite;
-  	animation-duration: 3.5s;
-  	animation-play-state: running;
+    animation-name: food-animation;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 3.5s;
+    animation-play-state: running;
   }
 
   .start-button {
-  	font-family: Impact;
-  	height: 80px;
-  	width: 180px;
-  	cursor: pointer;
-  	margin: 0px auto;
+    font-family: Impact;
+    height: 80px;
+    width: 180px;
+    cursor: pointer;
+    margin: 0px auto;
   }
 
   .start-button .outer {
-  	top: 100px;
-  	position: relative;
-  	width: 100%;
-  	height: 100%;
-  	padding: 10px;
-  	background: rgba(0, 0, 0, 0.65);
-  	border-radius: 14px;
-  	box-shadow: inset rgba(0, 0, 0, 0.85) 0px 1px 5px;
-  	-webkit-transform: perspective(500px) rotateX(35deg);
+    top: 100px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: 14px;
+    box-shadow: inset rgba(0, 0, 0, 0.85) 0px 1px 5px;
+    -webkit-transform: perspective(500px) rotateX(35deg);
   }
 
   .start-button .outer .height {
-  	position: relative;
-  	height: 100%;
-  	margin-top: -15px;
-  	padding-bottom: 15px;
-  	background: #39a02d;
-  	border-radius: 16px;
-  	box-shadow: rgba(0, 0, 0, 0.85) 0px 1px 1px, inset rgba(0, 0, 0, 0.35) 0px -2px 8px;
-  	-webkit-transition: all 0.1s ease-in-out;
+    position: relative;
+    height: 100%;
+    margin-top: -15px;
+    padding-bottom: 15px;
+    background: #39a02d;
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.85) 0px 1px 1px, inset rgba(0, 0, 0, 0.35) 0px -2px 8px;
+    -webkit-transition: all 0.1s ease-in-out;
   }
 
   .start-button:hover .outer .height {
-  	margin-top: -10px;
-  	padding-bottom: 10px;
-  	box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 1px, inset rgba(0, 0, 0, 0.35) 0px -2px 6px;
+    margin-top: -10px;
+    padding-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 1px, inset rgba(0, 0, 0, 0.35) 0px -2px 6px;
   }
 
   .start-button:active .outer .height {
-  	margin-top: 0px;
-  	padding-bottom: 0px;
+    margin-top: 0px;
+    padding-bottom: 0px;
   }
 
   .start-button .outer .height .inner {
-  	line-height: 2.8em;
-  	font-size: 30px;
-  	letter-spacing: .05em;
-  	position: relative;
-  	height: 100%;
-  	text-align: center;
-  	text-shadow: #8aff7b 0px 0px 1px;
-  	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #80ec75), color-stop(100%, #43d034));
-  	/* Chrome,Safari4+ */
-  	border-radius: 12px;
-  	box-shadow: inset rgba(255, 255, 255, 0.85) 0px 0px 1px;
-  	-webkit-transition: all 0.1s ease-in-out;
+    line-height: 2.8em;
+    font-size: 30px;
+    letter-spacing: .05em;
+    position: relative;
+    height: 100%;
+    text-align: center;
+    text-shadow: #8aff7b 0px 0px 1px;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #80ec75), color-stop(100%, #43d034));
+    /* Chrome,Safari4+ */
+    border-radius: 12px;
+    box-shadow: inset rgba(255, 255, 255, 0.85) 0px 0px 1px;
+    -webkit-transition: all 0.1s ease-in-out;
   }
 
   .start-button:hover .outer .height .inner {
-  	text-shadow: #99f48d 0px 0px 1px;
-  	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #43d034), color-stop(100%, #67e45c));
-  	/* Chrome,Safari4+ */
-  	background: linear-gradient(top, #43d034 0%, #67e45c 100%);
-  	/* W3C */
+    text-shadow: #99f48d 0px 0px 1px;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #43d034), color-stop(100%, #67e45c));
+    /* Chrome,Safari4+ */
+    background: linear-gradient(top, #43d034 0%, #67e45c 100%);
+    /* W3C */
   }
 
   .start-button:active .outer .height .inner {
-  	text-shadow: #319926 0px 1px 0px;
-  	border-radius: 16px;
-  	box-shadow: inset rgba(0, 0, 0, 0.9) 0px 0px 8px;
-  	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1d7d12), color-stop(100%, #4fd342));
-  	/* Chrome,Safari4+ */
-  	background: linear-gradient(top, #1d7d12 0%, #4fd342 100%);
-  	/* W3C */
+    text-shadow: #319926 0px 1px 0px;
+    border-radius: 16px;
+    box-shadow: inset rgba(0, 0, 0, 0.9) 0px 0px 8px;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1d7d12), color-stop(100%, #4fd342));
+    /* Chrome,Safari4+ */
+    background: linear-gradient(top, #1d7d12 0%, #4fd342 100%);
+    /* W3C */
   }
 
   #start-page {
-  	border: 3px dashed #444;
+    border: 3px dashed #444;
     background: grey;
     width: 99.5%;
     height: 450px
   }
   #timer{
-     position: absolute;
-     right: 100px;
+    position: absolute;
+    right: 100px;
   }
   #explanation{
-     margin-top: 0px;
-     padding-top: 70px;
-     text-align:center;
+    margin-top: 0px;
+    padding-top: 70px;
+    text-align:center;
   }
   #gameover-container {
     transform: translate(500px,180px);
@@ -153,191 +153,210 @@
     animation-iteration-count: 1;
     animation-play-state: paused;
 
-}
+  }
   </style>
   <script>
   function makeObstacle() {
 
-	// You need to start the obstacle animation after a random time here
-	setTimeout(function () {
-		$(".obstacle").css("animationPlayState", "running");
-		$(".obstacle").show();
-	}, Math.random() * 2000);
-}
-
-function makeFood() {
-
-	// You need to start the obstacle animation after a random time here
-	setTimeout(function () {
-		$("#food").css("animationPlayState", "running");
-		$("#food").show();
-	}, Math.random() * 300);
-}
-
-$(document).ready(function () {
-	function startTimer() {
-		var presentTime = $("#timer").html();
-		var timeArray = presentTime.split(/[:]+/);
-		var m = timeArray[0];
-		var s = checkSecond((timeArray[1] - 1));
-		if (s == 59) {
-			m = m - 1
-		}
-		if(m<0){
-      clearTimeout(counterTimeout);
-      gameover();
-    }
-    if (m>=0){
-      $("#timer").html(m + ":" + s);
-		  counterTimeout = setTimeout(startTimer, 1000);}
-	}
-
-	function checkSecond(sec) {
-		if (sec < 10 && sec >= 0) {
-			sec = "0" + sec
-		}; // add zero in front of numbers < 10
-		if (sec < 0) {
-			sec = "59"
-		};
-		return sec;
-	}
-  function gameover(){
-    $("#gameover").css("animationPlayState", "running");
-    $(".obstacle").css("animationPlayState", "paused");
-    $("#food").css("animationPlayState", "paused");
-    $("#birdie").css("animationPlayState", "paused");
-    $("#gameover-overlay").fadeIn();
+    // You need to start the obstacle animation after a random time here
+    setTimeout(function () {
+      $(".obstacle").css("animationPlayState", "running");
+      $(".obstacle").show();
+    }, Math.random() * 2000);
   }
-  function jump(){
-    var y = $("#birdie").css("transform");
-    y = parseFloat(y.split(" ")[5]);
-    y=y+5;
-    $("#birdie").animate({svgTransform:
-    'translateY('+y+'px)'}, 2000);
 
+  function makeFood() {
 
+    // You need to start the obstacle animation after a random time here
+    setTimeout(function () {
+      $("#food").css("animationPlayState", "running");
+      $("#food").show();
+    }, Math.random() * 300);
   }
-	// Handle the spacebar key for controlling the player
-	$(document).on("keydown", function (e) {
-		// The player jumps if the spacebar key is down
-		if (e.keyCode == 32)
-			jump();
-	});
-	//hide start-page and show playarea
-	$("#start-button").on("click", function () {
 
-		$("#start-page").css("display", "none");
-		$("#play-page").css("display", "block");
-		$('#timer').html(03 + ":" + 00);
-		startTimer();
-	})
-	// Stop the obstacle animation and restart later
-	$(".obstacle").on("animationiteration", function () {
-		$(".obstacle").hide();
-		var diff = Math.random() * 250 - 125;
+  $(document).ready(function () {
+    function startTimer() {
+      var presentTime = $("#timer").html();
+      var timeArray = presentTime.split(/[:]+/);
+      var m = timeArray[0];
+      var s = checkSecond((timeArray[1] - 1));
+      if (s == 59) {
+        m = m - 1
+      }
+      if(m<0){
+        clearTimeout(counterTimeout);
+        gameover();
+      }
+      if (m>=0){
+        $("#timer").html(m + ":" + s);
+        counterTimeout = setTimeout(startTimer, 1000);}
+      }
 
-		var newHeight1 = 90 + diff;
-		var newHeight2 = 90 - diff;
-		var newPosition2 = 306 - newHeight2;
+      function checkSecond(sec) {
+        if (sec < 10 && sec >= 0) {
+          sec = "0" + sec
+        }; // add zero in front of numbers < 10
+        if (sec < 0) {
+          sec = "59"
+        };
+        return sec;
+      }
+      function gameover(){
+        $("#gameover").css("animationPlayState", "running");
+        $(".obstacle").css("animationPlayState", "paused");
+        $("#food").css("animationPlayState", "paused");
+        $("#birdie").css("animationPlayState", "paused");
+        $("#gameover-overlay").fadeIn();
+      }
+      function jump(){
+        var x = $("#birdie").css("transform");
+        x = parseFloat(x.split(" ")[4]);
+        var y = $("#birdie").css("transform");
+        y = parseFloat(y.split(" ")[5]);
+        y=y-20;
+        var ans="translate("+x+","+y+")";
+        $("#birdie").animate({svgTransform:ans},200);
 
-		$("#obstacle1").css("height", newHeight1 + "px");
-		$("#obstacle2").css("height", newHeight2 + "px");
-		$("#obstacle2").css("y", newPosition2 + "px");
+      }
+      function fall(){
+        var x = $("#birdie").css("transform");
+        x = parseFloat(x.split(" ")[4]);
+        var y = $("#birdie").css("transform");
+        y = parseFloat(y.split(" ")[5]);
+        y=y+20;
+        var ans="translate("+x+","+y+")";
+        $("#birdie").animate({svgTransform:ans},200);
 
-		$(".obstacle").css("animationPlayState", "paused");
 
-		makeObstacle();
-	});
-	$("#food").on("animationiteration", function () {
-		$("#food").hide();
-		$("#food").css("cy", Math.random() * 300);
-		var r = Math.floor(Math.random() * 255);
+      }
+      // Handle the spacebar key for controlling the player
+      $(document).on("keydown", function (e) {
+        // The player jumps if the spacebar key is down
+        if (e.keyCode == 38)
+        jump();
 
-		var g = Math.floor(Math.random() * 255);
+      });
+      $(document).on("keydown", function (e) {
+        // The player jumps if the spacebar key is down
+        if (e.keyCode == 40)
+        fall();
 
-		var b = Math.floor(Math.random() * 255);
-		$("#food").css("fill", 'rgb(' + r + ', ' + g + ' , ' + b + ')');
+      });
+      //hide start-page and show playarea
+      $("#start-button").on("click", function () {
 
-		$("#food").css("animationPlayState", "paused");
+        $("#start-page").css("display", "none");
+        $("#play-page").css("display", "block");
+        $('#timer').html(03 + ":" + 00);
+        startTimer();
+      })
+      // Stop the obstacle animation and restart later
+      $(".obstacle").on("animationiteration", function () {
+        $(".obstacle").hide();
+        var diff = Math.random() * 250 - 125;
 
-		makeFood();
-	});
+        var newHeight1 = 90 + diff;
+        var newHeight2 = 90 - diff;
+        var newPosition2 = 306 - newHeight2;
 
-	// Stop the player animation
-	$("#player").on("animationiteration", function () {
-		$("#player").css("animationPlayState", "paused");
-	});
+        $("#obstacle1").css("height", newHeight1 + "px");
+        $("#obstacle2").css("height", newHeight2 + "px");
+        $("#obstacle2").css("y", newPosition2 + "px");
 
-	// Start the obstacle animation
-	makeObstacle();
+        $(".obstacle").css("animationPlayState", "paused");
 
-	// Start the game over checking
-	//    requestAnimationFrame(checkGameover);
-});
-  </script>
-</head>
-<body>
-  <p id="timer"></p>
-  <div id="start-page">
-  	<h1 id="explanation">Press the start button to start.</h1>
-  	<!--start-button!-->
-  	<div id="start-button" class="start-button">
-  		<div class="outer">
-  			<div class="height">
-  				<div class="inner">
-  					START
-  				</div>
-  			</div>
-  		</div>
-  	</div>
-  </div>
-  <svg id="play-page" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400">
-  	<!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
-  	<g id="playarea">
-  		<rect stroke="#7f003f" transform="translate(996,396) scale(1.0211693048477173,1.0152671337127686) translate(-996,-396) " id="svg_2" height="300" width="900" y="11.00001" position="absolute" x="50" stroke-width="10" fill="#5aed83"/>
-  		<g id="birdie">
-  			<polygon fill="#bf5f00" id="svg_6"/>
-  			<polygon fill="#bf5f00" id="svg_8"/>
-  			<g id="svg_1" stroke="null">
-  				<ellipse fill="#635b84" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="157.02198" cy="194.52586" id="svg_2" rx="21.29332" ry="18.18579" stroke="#7f003f"/>
-  				<path fill="none" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" id="svg_4" d="m147.79487,209.80192c-0.1183,0.72743 -0.35808,1.29633 -0.70978,1.80343c-0.326,0.47006 -0.74716,0.89134 -1.06467,1.45486l-0.35489,0.53999l0,0.63906l0,0.65468" stroke="#7f003f"/>
-  				<ellipse fill="#3f7f00" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="176.18597" cy="179.24979" id="svg_10" rx="14.90533" ry="10.91147" stroke="#7f003f"/>
-  				<path fill="#007f00" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" id="svg_13" d="m162.89654,185.66729c-1.24807,1.87921 -2.21064,3.40811 -3.36979,5.07385c-1.16009,1.66709 -3.09835,2.37694 -4.95893,3.41531c-1.8843,1.05161 -3.45405,1.71835 -5.39916,2.00828c-2.2778,0.33951 -4.29972,0.6604 -6.30464,0.55211c-1.92817,-0.10413 -3.55859,-0.40098 -6.49677,-0.27537c-1.76055,0.07528 -4.14432,0.03587 -5.96277,-0.30978c-2.1684,-0.41215 -4.18428,-0.91235 -6.2144,-1.71411c-1.87346,-0.73988 -3.78739,-0.58497 -5.51959,-0.95939c-2.13396,-0.46131 -3.95934,0.91359 -6.14862,0.83097l-1.91315,-1.09996" stroke="#7f003f"/>
-  				<path fill="#007f00" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" d="m164.00188,178.44262c-1.24807,1.87921 -2.21064,3.40811 -3.36979,5.07385c-1.16009,1.66709 -3.09834,2.37694 -4.95893,3.41531c-1.88431,1.05161 -3.45405,1.71835 -5.39916,2.00828c-2.2778,0.33951 -4.29972,0.6604 -6.30464,0.55211c-1.92816,-0.10412 -3.55859,-0.40098 -6.49677,-0.27537c-1.76055,0.07528 -4.14431,0.03586 -5.96276,-0.30978c-2.1684,-0.41215 -4.18428,-0.91236 -6.2144,-1.71411c-1.87346,-0.73988 -3.7874,-0.58497 -5.51958,-0.9594c-2.13396,-0.46131 -3.95934,0.91359 -6.14862,0.83097l-1.91315,-1.09997" id="svg_14" stroke="#7f003f"/>
-  				<polygon points="195.7428436279297,177.3839874267578 188.17383575439453,182.95848083496094 187.24784088134766,173.4532470703125 195.7428436279297,177.3839874267578 " fill="#bf5f00" id="svg_9" stroke="null"/>
-  				<ellipse ry="2.90973" rx="2.83911" id="svg_11" cy="176.34007" cx="179.02508" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#000000" stroke="null"/>
-  				<text transform="matrix(-0.7014641744794976,0.11100838892637757,-0.10831431336704599,-0.7189115221980575,219.97908562977102,371.3279992477065) " xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_12" y="227" x="62" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#000000" stroke="null">y</text>
-  				<text transform="matrix(-0.7068270779824497,0.06625673876391248,-0.06464874623045398,-0.7244078158948376,226.07019942796015,368.74773251942725) " xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_15" y="223" x="73" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#000000" stroke="null">y</text>
-  			</g>
-  		</g>
-  		<rect id="obstacle1" class="obstacle" height="90" width="40" y="10" x="273" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#7f3f00"/>
-  		<rect stroke="null" id="obstacle2" class="obstacle" height="90" width="40" y="217" x="273" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#7f3f00"/>
-  		<ellipse id="food" stroke="#000000" ry="7" rx="7.5" id="svg_1" cy="104" cx="929.5" stroke-width="2" fill="#bf00bf"/>
-  		<!-- <g class="food" id="food1" stroke="null">
-  			<ellipse id="svg_13" stroke="null" ry="13.5" rx="18.500001" cy="134.499999" cx="872.500001" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#f2ae6f"/>
-  			<rect id="svg_14" stroke="null" height="8.485715" width="36.439394" y="131.799999" x="854.560606" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#472b13"/>
-  			<rect id="svg_15" stroke="null" height="5.4" width="37" y="129.485713" x="853.999998" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#1fd137"/>
-  			<rect id="svg_16" stroke="null" height="3.085714" width="37.000004" y="132.571428" x="853.999999" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#cbea1e"/>
-  			</g> -->
-  		<!-- <g class="food" id="food2" stroke="null">
-  			<ellipse id="svg_13" stroke="null" ry="13.5" rx="18.500001" cy="134.499999" cx="872.500001" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#f2ae6f"/>
-  			<rect id="svg_14" stroke="null" height="8.485715" width="36.439394" y="131.799999" x="854.560606" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#472b13"/>
-  			<rect id="svg_15" stroke="null" height="5.4" width="37" y="129.485713" x="853.999998" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#1fd137"/>
-  			<rect id="svg_16" stroke="null" height="3.085714" width="37.000004" y="132.571428" x="853.999999" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#cbea1e"/>
-  			</g> -->
-  		<!-- <g class="food" id="food23" stroke="null">
-  			<ellipse id="svg_13" stroke="null" ry="13.5" rx="18.500001" cy="134.499999" cx="872.500001" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#f2ae6f"/>
-  			<rect id="svg_14" stroke="null" height="8.485715" width="36.439394" y="131.799999" x="854.560606" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#472b13"/>
-  			<rect id="svg_15" stroke="null" height="5.4" width="37" y="129.485713" x="853.999998" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#1fd137"/>
-  			<rect id="svg_16" stroke="null" height="3.085714" width="37.000004" y="132.571428" x="853.999999" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#cbea1e"/>
-  			</g> -->
-  	</g>
-    <rect id="gameover-overlay" style="display:none" transform="translate(996,396) scale(1.0211693048477173,1.0152671337127686) translate(-996,-396) " width="900" height="300" fill="black" fill-opacity="0.9" y="11.00001" position="absolute" x="50" stroke-width="10"/>
-    <g id="gameover-container">
+        makeObstacle();
+      });
+      $("#food").on("animationiteration", function () {
+        $("#food").hide();
+        $("#food").css("cy", Math.random() * 300);
+        var r = Math.floor(Math.random() * 255);
 
-      <text id="gameover" x="0" y="0" fill="#aaa" font-size="80px" text-anchor="middle" >Game Over</text>
-    </g>
-  </svg>
+        var g = Math.floor(Math.random() * 255);
+
+        var b = Math.floor(Math.random() * 255);
+        $("#food").css("fill", 'rgb(' + r + ', ' + g + ' , ' + b + ')');
+
+        $("#food").css("animationPlayState", "paused");
+
+        makeFood();
+      });
+
+      // Stop the player animation
+      $("#player").on("animationiteration", function () {
+        $("#player").css("animationPlayState", "paused");
+      });
+
+      // Start the obstacle animation
+      makeObstacle();
+
+      // Start the game over checking
+       //requestAnimationFrame(fall);
+    });
+    </script>
+  </head>
+  <body>
+    <p id="timer"></p>
+    <div id="start-page">
+      <h1 id="explanation">Press the start button to start.</h1>
+      <!--start-button!-->
+      <div id="start-button" class="start-button">
+        <div class="outer">
+          <div class="height">
+            <div class="inner">
+              START
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <svg id="play-page" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400">
+      <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+      <g id="playarea">
+        <rect stroke="#7f003f" transform="translate(996,396) scale(1.0211693048477173,1.0152671337127686) translate(-996,-396) " id="svg_2" height="300" width="900" y="11.00001" position="absolute" x="50" stroke-width="10" fill="#5aed83"/>
+        <g id="birdie" transform="translate(0,0)">
+          <polygon fill="#bf5f00" id="svg_6"/>
+          <polygon fill="#bf5f00" id="svg_8"/>
+          <g id="svg_1" stroke="null">
+            <ellipse fill="#635b84" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="157.02198" cy="194.52586" id="svg_2" rx="21.29332" ry="18.18579" stroke="#7f003f"/>
+            <path fill="none" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" id="svg_4" d="m147.79487,209.80192c-0.1183,0.72743 -0.35808,1.29633 -0.70978,1.80343c-0.326,0.47006 -0.74716,0.89134 -1.06467,1.45486l-0.35489,0.53999l0,0.63906l0,0.65468" stroke="#7f003f"/>
+            <ellipse fill="#3f7f00" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="176.18597" cy="179.24979" id="svg_10" rx="14.90533" ry="10.91147" stroke="#7f003f"/>
+            <path fill="#007f00" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" id="svg_13" d="m162.89654,185.66729c-1.24807,1.87921 -2.21064,3.40811 -3.36979,5.07385c-1.16009,1.66709 -3.09835,2.37694 -4.95893,3.41531c-1.8843,1.05161 -3.45405,1.71835 -5.39916,2.00828c-2.2778,0.33951 -4.29972,0.6604 -6.30464,0.55211c-1.92817,-0.10413 -3.55859,-0.40098 -6.49677,-0.27537c-1.76055,0.07528 -4.14432,0.03587 -5.96277,-0.30978c-2.1684,-0.41215 -4.18428,-0.91235 -6.2144,-1.71411c-1.87346,-0.73988 -3.78739,-0.58497 -5.51959,-0.95939c-2.13396,-0.46131 -3.95934,0.91359 -6.14862,0.83097l-1.91315,-1.09996" stroke="#7f003f"/>
+            <path fill="#007f00" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" d="m164.00188,178.44262c-1.24807,1.87921 -2.21064,3.40811 -3.36979,5.07385c-1.16009,1.66709 -3.09834,2.37694 -4.95893,3.41531c-1.88431,1.05161 -3.45405,1.71835 -5.39916,2.00828c-2.2778,0.33951 -4.29972,0.6604 -6.30464,0.55211c-1.92816,-0.10412 -3.55859,-0.40098 -6.49677,-0.27537c-1.76055,0.07528 -4.14431,0.03586 -5.96276,-0.30978c-2.1684,-0.41215 -4.18428,-0.91236 -6.2144,-1.71411c-1.87346,-0.73988 -3.7874,-0.58497 -5.51958,-0.9594c-2.13396,-0.46131 -3.95934,0.91359 -6.14862,0.83097l-1.91315,-1.09997" id="svg_14" stroke="#7f003f"/>
+            <polygon points="195.7428436279297,177.3839874267578 188.17383575439453,182.95848083496094 187.24784088134766,173.4532470703125 195.7428436279297,177.3839874267578 " fill="#bf5f00" id="svg_9" stroke="null"/>
+            <ellipse ry="2.90973" rx="2.83911" id="svg_11" cy="176.34007" cx="179.02508" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#000000" stroke="null"/>
+            <text transform="matrix(-0.7014641744794976,0.11100838892637757,-0.10831431336704599,-0.7189115221980575,219.97908562977102,371.3279992477065) " xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_12" y="227" x="62" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#000000" stroke="null">y</text>
+            <text transform="matrix(-0.7068270779824497,0.06625673876391248,-0.06464874623045398,-0.7244078158948376,226.07019942796015,368.74773251942725) " xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_15" y="223" x="73" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" fill="#000000" stroke="null">y</text>
+          </g>
+        </g>
+        <rect id="obstacle1" class="obstacle" height="90" width="40" y="10" x="273" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#7f3f00"/>
+        <rect stroke="null" id="obstacle2" class="obstacle" height="90" width="40" y="217" x="273" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#7f3f00"/>
+        <ellipse id="food" stroke="#000000" ry="7" rx="7.5" id="svg_1" cy="104" cx="929.5" stroke-width="2" fill="#bf00bf"/>
+        <!-- <g class="food" id="food1" stroke="null">
+        <ellipse id="svg_13" stroke="null" ry="13.5" rx="18.500001" cy="134.499999" cx="872.500001" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#f2ae6f"/>
+        <rect id="svg_14" stroke="null" height="8.485715" width="36.439394" y="131.799999" x="854.560606" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#472b13"/>
+        <rect id="svg_15" stroke="null" height="5.4" width="37" y="129.485713" x="853.999998" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#1fd137"/>
+        <rect id="svg_16" stroke="null" height="3.085714" width="37.000004" y="132.571428" x="853.999999" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#cbea1e"/>
+      </g> -->
+      <!-- <g class="food" id="food2" stroke="null">
+      <ellipse id="svg_13" stroke="null" ry="13.5" rx="18.500001" cy="134.499999" cx="872.500001" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#f2ae6f"/>
+      <rect id="svg_14" stroke="null" height="8.485715" width="36.439394" y="131.799999" x="854.560606" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#472b13"/>
+      <rect id="svg_15" stroke="null" height="5.4" width="37" y="129.485713" x="853.999998" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#1fd137"/>
+      <rect id="svg_16" stroke="null" height="3.085714" width="37.000004" y="132.571428" x="853.999999" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#cbea1e"/>
+    </g> -->
+    <!-- <g class="food" id="food23" stroke="null">
+    <ellipse id="svg_13" stroke="null" ry="13.5" rx="18.500001" cy="134.499999" cx="872.500001" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#f2ae6f"/>
+    <rect id="svg_14" stroke="null" height="8.485715" width="36.439394" y="131.799999" x="854.560606" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#472b13"/>
+    <rect id="svg_15" stroke="null" height="5.4" width="37" y="129.485713" x="853.999998" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#1fd137"/>
+    <rect id="svg_16" stroke="null" height="3.085714" width="37.000004" y="132.571428" x="853.999999" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#cbea1e"/>
+  </g> -->
+</g>
+<rect id="gameover-overlay" style="display:none" transform="translate(996,396) scale(1.0211693048477173,1.0152671337127686) translate(-996,-396) " width="900" height="300" fill="black" fill-opacity="0.9" y="11.00001" position="absolute" x="50" stroke-width="10"/>
+<g id="gameover-container">
+
+  <text id="gameover" x="0" y="0" fill="#aaa" font-size="80px" text-anchor="middle" >Game Over</text>
+</g>
+</svg>
 
 </body>
 </html>
