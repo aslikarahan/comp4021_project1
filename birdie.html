@@ -184,6 +184,7 @@
   }
 
   $(document).ready(function () {
+    var pressed = [];
     function startTimer() {
       var presentTime = $("#timer").html();
       var timeArray = presentTime.split(/[:]+/);
@@ -239,24 +240,56 @@
         x = parseFloat(x.split(" ")[4]);
         var y = $("#birdie").css("transform");
         y = parseFloat(y.split(" ")[5]);
-        y=y+20;
+        y=y+30;
+        var ans="translate("+x+","+y+")";
+        $("#birdie").animate({svgTransform:ans},200);
+      }
+      function forward(){
+        var x = $("#birdie").css("transform");
+        x = parseFloat(x.split(" ")[4]);
+        var y = $("#birdie").css("transform");
+        y = parseFloat(y.split(" ")[5]);
+        x=x+30;
         var ans="translate("+x+","+y+")";
         $("#birdie").animate({svgTransform:ans},200);
 
+      }
+      function backward(){
+        var x = $("#birdie").css("transform");
+        x = parseFloat(x.split(" ")[4]);
+        var y = $("#birdie").css("transform");
+        y = parseFloat(y.split(" ")[5]);
+        x=x-50;
+        var ans="translate("+x+","+y+")";
+        $("#birdie").animate({svgTransform:ans},200);
 
       }
       // Handle the spacebar key for controlling the player
       $(document).on("keydown", function (e) {
-        // The player jumps if the spacebar key is down
-        if (e.keyCode == 38)
-        jump();
-
+        if (pressed[e.which]) return;
+        pressed[e.which] = true;
+        switch (e.keyCode) {
+          case 37:
+          // The player goes backward if the left arrow button is pressed
+            backward();
+            break;
+          case 38:
+          // The player jumps if the up arrow button is pressed
+              jump();
+              break;
+          case 39:
+          // The player goes forward if the right arrow button is pressed
+              forward();
+              break;
+          case 40:
+          // The player falls if the down arrow button is pressed
+            fall()
+        }
       });
-      $(document).on("keydown", function (e) {
-        // The player jumps if the spacebar key is down
-        if (e.keyCode == 40)
-        fall();
-
+      $(document).on("keyup", function (e) {
+        // avoid long press of the button
+        if (!pressed[e.which]) return;
+        pressed[e.which] = false;
       });
       //hide start-page and show playarea
       $("#start-button").on("click", function () {
