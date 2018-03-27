@@ -154,6 +154,15 @@
     animation-play-state: paused;
 
   }
+  #restart{
+    display: none;
+  }
+  svg #restart:hover{
+    cursor: pointer;
+  }
+  svg #restart:hover #restart-button{
+    fill: #666;
+  }
   </style>
   <script>
   function makeObstacle() {
@@ -208,6 +217,7 @@
         $("#food").css("animationPlayState", "paused");
         $("#birdie").css("animationPlayState", "paused");
         $("#gameover-overlay").fadeIn();
+        $("#restart").fadeIn();
         $("audio")[0].pause();
         $("audio")[1].pause();
         $("audio")[1].currentTime = 0;
@@ -256,7 +266,7 @@
         $("audio")[0].pause();
         $("audio")[0].currentTime = 0;
         $("audio")[0].play();
-        $('#timer').html(00 + ":" + 03);
+        $('#timer').html(03 + ":" + 00);
         startTimer();
       })
       // Stop the obstacle animation and restart later
@@ -296,6 +306,11 @@
         $("#player").css("animationPlayState", "paused");
       });
 
+      //restart
+      $("#restart").on("click",function(){
+          alert("restart");
+      }
+    );
       // Start the obstacle animation
       makeObstacle();
 
@@ -367,7 +382,11 @@
 <rect id="gameover-overlay" style="display:none" transform="translate(996,396) scale(1.0211693048477173,1.0152671337127686) translate(-996,-396) " width="900" height="300" fill="black" fill-opacity="0.9" y="11.00001" position="absolute" x="50" stroke-width="10"/>
 <g id="gameover-container">
 
-  <text id="gameover" x="0" y="0" fill="#aaa" font-size="80px" text-anchor="middle" >Game Over</text>
+  <text id="gameover" x="0" y="-50" fill="#aaa" font-size="80px" text-anchor="middle" >Game Over</text>
+  <g id="restart">
+  <rect id="restart-button" x="-150" y="30" rx="20" ry="20" width="300" height="60" fill="#999" style="stroke:black;stroke-width:5;opacity:0.6" />
+  <text id="restart-text" letter-spacing="5px" font-weight="900" x="-78" y="70" fill="#333" font-size="25px">RESTART</text>
+  </g>
 </g>
 </svg>
 
