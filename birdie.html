@@ -226,7 +226,8 @@
 
       }
       function jump(){
-          $("#birdie").finish();
+        //stop the previous animation
+        $("#birdie").stop();
         var x = $("#birdie").css("transform");
         x = parseFloat(x.split(" ")[4]);
         var y = $("#birdie").css("transform");
@@ -237,7 +238,8 @@
 
       }
       function fall(){
-          $("#birdie").finish();
+        //stop the previous animation
+        $("#birdie").stop();
         var x = $("#birdie").css("transform");
         x = parseFloat(x.split(" ")[4]);
         var y = $("#birdie").css("transform");
@@ -247,7 +249,8 @@
         $("#birdie").animate({svgTransform:ans},200);
       }
       function forward(){
-          $("#birdie").finish();
+        //stop the previous animation
+        $("#birdie").stop();
         var x = $("#birdie").css("transform");
         x = parseFloat(x.split(" ")[4]);
         var y = $("#birdie").css("transform");
@@ -258,7 +261,8 @@
 
       }
       function backward(){
-          $("#birdie").finish();
+        //stop the previous animation
+        $("#birdie").stop();
         var x = $("#birdie").css("transform");
         x = parseFloat(x.split(" ")[4]);
         var y = $("#birdie").css("transform");
