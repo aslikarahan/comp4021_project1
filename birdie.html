@@ -226,6 +226,7 @@
 
       }
       function jump(){
+          $("#birdie").finish();
         var x = $("#birdie").css("transform");
         x = parseFloat(x.split(" ")[4]);
         var y = $("#birdie").css("transform");
@@ -236,30 +237,33 @@
 
       }
       function fall(){
+          $("#birdie").finish();
         var x = $("#birdie").css("transform");
         x = parseFloat(x.split(" ")[4]);
         var y = $("#birdie").css("transform");
         y = parseFloat(y.split(" ")[5]);
-        y=y+30;
+        y=y+20;
         var ans="translate("+x+","+y+")";
         $("#birdie").animate({svgTransform:ans},200);
       }
       function forward(){
+          $("#birdie").finish();
         var x = $("#birdie").css("transform");
         x = parseFloat(x.split(" ")[4]);
         var y = $("#birdie").css("transform");
         y = parseFloat(y.split(" ")[5]);
-        x=x+30;
+        x=x+20;
         var ans="translate("+x+","+y+")";
         $("#birdie").animate({svgTransform:ans},200);
 
       }
       function backward(){
+          $("#birdie").finish();
         var x = $("#birdie").css("transform");
         x = parseFloat(x.split(" ")[4]);
         var y = $("#birdie").css("transform");
         y = parseFloat(y.split(" ")[5]);
-        x=x-50;
+        x=x-20;
         var ans="translate("+x+","+y+")";
         $("#birdie").animate({svgTransform:ans},200);
 
