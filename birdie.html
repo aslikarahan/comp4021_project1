@@ -3,6 +3,11 @@
 <head>
   <title>Hello</title>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/jquery.svg.css">
+<script src="jquery.svg.js"></script>
+<script  src="jquery.svg.min.js"></script>
+<script  src="jquery.svfanim.js"></script>
+
   <style>
   body {
   	width: 100%;
@@ -21,6 +26,7 @@
   	}
   }
 
+
   @keyframes food-animation {
   	from { transform: translateX(70px);}
   	to { transform: translateX(-900px);}
@@ -29,6 +35,7 @@
     from { transform:  font-size: 1px; opacity: 0; }
     to   { transform: font-size: 80px; opacity: 1; }
   }
+
 
   .obstacle {
   	animation-name: obstacle-animation;
@@ -200,6 +207,15 @@ $(document).ready(function () {
     $("#food").css("animationPlayState", "paused");
     $("#birdie").css("animationPlayState", "paused");
     $("#gameover-overlay").fadeIn();
+  }
+  function jump(){
+    var y = $("#birdie").css("transform");
+    y = parseFloat(y.split(" ")[5]);
+    y=y+5;
+    $("#birdie").animate({svgTransform:
+    'translateY('+y+'px)'}, 2000);
+
+
   }
 	// Handle the spacebar key for controlling the player
 	$(document).on("keydown", function (e) {
