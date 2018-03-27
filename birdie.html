@@ -215,7 +215,7 @@
         y = parseFloat(y.split(" ")[5]);
         y=y-20;
         var ans="translate("+x+","+y+")";
-        $("#birdie").animate({svgTransform:ans},200);
+        $("#birdie").animate({svgTransform:ans},100);
 
       }
       function fall(){
@@ -225,7 +225,29 @@
         y = parseFloat(y.split(" ")[5]);
         y=y+20;
         var ans="translate("+x+","+y+")";
-        $("#birdie").animate({svgTransform:ans},200);
+        $("#birdie").animate({svgTransform:ans},100);
+
+
+      }
+      function forward(){
+        var x = $("#birdie").css("transform");
+        x = parseFloat(x.split(" ")[4]);
+        var y = $("#birdie").css("transform");
+        y = parseFloat(y.split(" ")[5]);
+        x=x-15;
+        var ans="translate("+x+","+y+")";
+        $("#birdie").animate({svgTransform:ans},100);
+
+
+      }
+      function backward(){
+        var x = $("#birdie").css("transform");
+        x = parseFloat(x.split(" ")[4]);
+        var y = $("#birdie").css("transform");
+        y = parseFloat(y.split(" ")[5]);
+        x=x+15;
+        var ans="translate("+x+","+y+")";
+        $("#birdie").animate({svgTransform:ans},100);
 
 
       }
@@ -240,6 +262,17 @@
         // The player jumps if the spacebar key is down
         if (e.keyCode == 40)
         fall();
+
+      });
+      $(document).on("keydown", function (e) {
+        // The player jumps if the spacebar key is down
+        if (e.keyCode == 39)
+        backward();
+
+      });$(document).on("keydown", function (e) {
+        // The player jumps if the spacebar key is down
+        if (e.keyCode == 37)
+        forward();
 
       });
       //hide start-page and show playarea
