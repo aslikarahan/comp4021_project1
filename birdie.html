@@ -199,13 +199,13 @@
         foodx = parseFloat(foodx.split(" ")[4]);
         var foody = $("#food").css("cy");
         foody = parseFloat(foody);
-        birdiex=birdiex+80;
+        birdiex=birdiex+100;
 
         birdiey=birdiey+160;
         foodx=foodx+900;
         foody=foody-30;
         var distance = (birdiex-foodx)*(birdiex-foodx)+(birdiey-foody)*(birdiey-foody);
-        if (distance<2500 ) {
+        if (distance<2000 ) {
           Score++;
           $("#score-text").text(Score);
           hideFood();
@@ -335,7 +335,7 @@ $("audio")[3].play();
         };
         return sec;
       }
-    
+
       function jump(){
         //stop the previous animation
         $("#birdie").stop();
