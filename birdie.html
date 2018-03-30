@@ -217,6 +217,53 @@
 
             requestAnimationFrame(eatFood);
     }
+    function gameover(){
+      $("#gameover").css("animationPlayState", "running");
+      $("#obstacle1").css("animationPlayState", "paused");
+      $("#obstacle2").css("animationPlayState", "paused");
+      $("#food").css("animationPlayState", "paused");
+      $("#birdie").css("animationPlayState", "paused");
+      $("#gameover-overlay").fadeIn();
+      $("#restart").fadeIn();
+      $("audio")[0].pause();
+      $("audio")[1].pause();
+      $("audio")[1].currentTime = 0;
+      $("audio")[1].play();
+
+    }
+
+    function checkGameover() {
+          var birdiex = $("#birdie").css("transform");
+          birdiex = parseFloat(birdiex.split(" ")[4]);
+          var birdiey = $("#birdie").css("transform");
+          birdiey = parseFloat(birdiey.split(" ")[5]);
+          var obs1x = $("#obstacle1").css("transform");
+          obs1x = parseFloat(obs1x.split(" ")[4]);
+          var obs1y = $("#obstacle1").css("height");
+          obs1y = parseFloat(obs1y);
+
+
+          var obs2y = $("#obstacle2").css("y");
+          obs2y = parseFloat(obs2y);
+
+          birdiex=birdiex+80;
+
+          birdiey=birdiey+160;
+
+          obs1x=obs1x+250;
+          var xdist=birdiex-obs1x;
+          var updist=obs1y-birdiey;
+          var downdist=birdiey-obs2y+50;
+
+
+
+          if (xdist>-50 && xdist<40 && !(updist<0 && downdist<0)) {
+                        gameover();
+          }
+          else
+            requestAnimationFrame(checkGameover);
+      }
+
 
   function makeObstacle() {
 
@@ -225,6 +272,7 @@
       $(".obstacle").css("animationPlayState", "running");
       $(".obstacle").show();
     }, Math.random() * 2000);
+
   }
 
   function makeFood() {
@@ -257,6 +305,8 @@
 $("audio")[3].currentTime = 0;
 $("audio")[3].play();
     requestAnimationFrame(eatFood);
+    requestAnimationFrame(checkGameover);
+
 
     var pressed = [];
     function startTimer() {
@@ -285,20 +335,7 @@ $("audio")[3].play();
         };
         return sec;
       }
-      function gameover(){
-        $("#gameover").css("animationPlayState", "running");
-        $("#obstacle1").css("animationPlayState", "paused");
-        $("#obstacle2").css("animationPlayState", "paused");
-        $("#food").css("animationPlayState", "paused");
-        $("#birdie").css("animationPlayState", "paused");
-        $("#gameover-overlay").fadeIn();
-        $("#restart").fadeIn();
-        $("audio")[0].pause();
-        $("audio")[1].pause();
-        $("audio")[1].currentTime = 0;
-        $("audio")[1].play();
-
-      }
+    
       function jump(){
         //stop the previous animation
         $("#birdie").stop();
@@ -347,7 +384,7 @@ $("audio")[3].play();
         $("#birdie").animate({svgTransform:ans},200);
 
       }
-      // Handle the spacebar key for controlling the player
+
       $(document).on("keydown", function (e) {
         if (pressed[e.which]) return;
         pressed[e.which] = true;
@@ -379,7 +416,8 @@ $("audio")[3].play();
         if (e.keyCode == 39)
         backward();
 
-      });$(document).on("keydown", function (e) {
+      });
+      $(document).on("keydown", function (e) {
         // The player jumps if the spacebar key is down
         if (e.keyCode == 37)
         forward();
@@ -413,6 +451,9 @@ $("audio")[3].play();
         $(".obstacle").css("animationPlayState", "paused");
 
         makeObstacle();
+        requestAnimationFrame(checkGameover);
+
+
       });
       $("#food").on("animationiteration", function () {
 
@@ -420,10 +461,6 @@ $("audio")[3].play();
         requestAnimationFrame(eatFood);
 
       });
-
-
-
-
       //restart
       $("#restart").on("click",function(){
         alert("restart");
