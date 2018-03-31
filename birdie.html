@@ -289,11 +289,11 @@
         var enemyx = $("#enemy").css("transform");
         enemyx = parseFloat(enemyx.split(" ")[4]);
         birdiex=birdiex+80;
-        birdiey=birdiey+170;
+        birdiey=birdiey+180;
         enemyx=enemyx+900;
 
         var distance = (birdiex-enemyx)*(birdiex-enemyx)+(birdiey-EnemyY)*(birdiey-EnemyY);
-        if (distance<1000 ) {
+        if (distance<800 ) {
           Lives--;
           $("#lives-text").text($("#lives-text").text().split(" ")[0]+" "+Lives);
           hideEnemy();
