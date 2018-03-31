@@ -155,7 +155,7 @@
   }
   #gamerule{
     height: 300px;
-    width: 300px;
+    width: 400px;
 
     position: relative;
     top:-400px;
@@ -219,13 +219,15 @@
         var distance = (birdiex-foodx)*(birdiex-foodx)+(birdiey-foody)*(birdiey-foody);
         if (distance<2000 ) {
           Score++;
-          $("#score-text").text(Score);
+          $("#score-text").text($("#score-text").text().split(" ")[0]+" "+Score);
           hideFood();
           requestAnimationFrame(eatFood);
 
         }
         else
         $("#food").show();
+        $("#score-text").text($("#score-text").text().split(" ")[0]+" "+Score);
+
 
             requestAnimationFrame(eatFood);
     }
@@ -286,20 +288,20 @@
         birdiey = parseFloat(birdiey.split(" ")[5]);
         var enemyx = $("#enemy").css("transform");
         enemyx = parseFloat(enemyx.split(" ")[4]);
-        birdiex=birdiex+100;
-        birdiey=birdiey+160;
-        enemyx=enemyx+920;
+        birdiex=birdiex+80;
+        birdiey=birdiey+170;
+        enemyx=enemyx+900;
 
         var distance = (birdiex-enemyx)*(birdiex-enemyx)+(birdiey-EnemyY)*(birdiey-EnemyY);
-        if (distance<2000 ) {
+        if (distance<1000 ) {
           Lives--;
-          $("#lives-text-text").text(Lives);
+          $("#lives-text").text($("#lives-text").text().split(" ")[0]+" "+Lives);
           hideEnemy();
           requestAnimationFrame(getHit);
 
         }
         else
-        $("#lives-text-text").text(Lives);
+        $("#lives-text").text($("#lives-text").text().split(" ")[0]+" "+Lives);
         // $("#enemy").show();
 
             requestAnimationFrame(getHit);
@@ -415,9 +417,11 @@ $("audio")[3].play();
         x = parseFloat(x.split(" ")[4]);
         var y = $("#birdie").css("transform");
         y = parseFloat(y.split(" ")[5]);
+        if(y>-145){
         y=y-20;
         var ans="translate("+x+","+y+")";
         $("#birdie").animate({svgTransform:ans},100);
+      }
 
       }
       function fall(){
@@ -427,10 +431,12 @@ $("audio")[3].play();
         x = parseFloat(x.split(" ")[4]);
         var y = $("#birdie").css("transform");
         y = parseFloat(y.split(" ")[5]);
+          if(y<71){
         y=y+20;
         var ans="translate("+x+","+y+")";
 
         $("#birdie").animate({svgTransform:ans},200);
+      }
       }
       function forward(){
         //stop the previous animation
@@ -439,9 +445,11 @@ $("audio")[3].play();
         x = parseFloat(x.split(" ")[4]);
         var y = $("#birdie").css("transform");
         y = parseFloat(y.split(" ")[5]);
-        x=x-20;
+        if(x<735){
+        x=x+20;
         var ans="translate("+x+","+y+")";
         $("#birdie").animate({svgTransform:ans},200);
+      }
 
       }
       function backward(){
@@ -451,10 +459,11 @@ $("audio")[3].play();
         x = parseFloat(x.split(" ")[4]);
         var y = $("#birdie").css("transform");
         y = parseFloat(y.split(" ")[5]);
-        x=x+20;
+        if(x>-70){
+        x=x-20;
         var ans="translate("+x+","+y+")";
         $("#birdie").animate({svgTransform:ans},200);
-
+}
       }
 
       $(document).on("keydown", function (e) {
@@ -485,13 +494,13 @@ $("audio")[3].play();
       });
       $(document).on("keydown", function (e) {
         // The player jumps if the spacebar key is down
-        if (e.keyCode == 39)
+        if (e.keyCode == 37)
         backward();
 
       });
       $(document).on("keydown", function (e) {
         // The player jumps if the spacebar key is down
-        if (e.keyCode == 37)
+        if (e.keyCode == 39)
         forward();
 
       });
@@ -622,10 +631,12 @@ $("audio")[3].play();
  </g>
 </svg>
           <div id="gamerule">
-            <h1 class="rule" style=""> Welcome to Flappy Bird </h1>
-            <h3> Press up down left right to move bird</h3>
-             <h3> Dodge the obstacle </h3>
-             <h3>Eat fruit to increase score</h3>
+            <h2 class="rule" style=""> Welcome to Fatty Bird </h2>
+            <h4> Press up down left right keys to move bird around</h4>
+             <h4> Dodge the obstacles, if you run into them, the birdie will be too tired to fly and the game will be over!! </h4>
+             <h4>Eat colorful circle fruits to increase you score and motivate the birdie</h4>
+             <h4>Dodge the sticks that come in your way! You have 5 lives and you lose a life each time you run into a stick! Protect the birdie</h4>
+
           </div>
           <!--start-button!-->
           <div id="start-button" class="start-button">
@@ -739,19 +750,6 @@ $("audio")[3].play();
    <rect fill="#7f3f00" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="273" y="217" width="40" height="90" class="obstacle" id="obstacle2" stroke="url(#svg_b)"/>
               <ellipse id="food" stroke="#000000" ry="7" rx="7.5" id="svg_1" cy="104" cx="929.5" stroke-width="2" fill="#bf00bf"/>
               <line fill="none" stroke="#000000" stroke-width="4" x1="921" y1="109" x2="973" y2="108" id="enemy"/>
-
-          <!-- <g class="food" id="food2" stroke="null">
-          <ellipse id="svg_13" stroke="null" ry="13.5" rx="18.500001" cy="134.499999" cx="872.500001" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#f2ae6f"/>
-          <rect id="svg_14" stroke="null" height="8.485715" width="36.439394" y="131.799999" x="854.560606" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#472b13"/>
-          <rect id="svg_15" stroke="null" height="5.4" width="37" y="129.485713" x="853.999998" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#1fd137"/>
-          <rect id="svg_16" stroke="null" height="3.085714" width="37.000004" y="132.571428" x="853.999999" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#cbea1e"/>
-        </g> -->
-        <!-- <g class="food" id="food23" stroke="null">
-        <ellipse id="svg_13" stroke="null" ry="13.5" rx="18.500001" cy="134.499999" cx="872.500001" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#f2ae6f"/>
-        <rect id="svg_14" stroke="null" height="8.485715" width="36.439394" y="131.799999" x="854.560606" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#472b13"/>
-        <rect id="svg_15" stroke="null" height="5.4" width="37" y="129.485713" x="853.999998" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#1fd137"/>
-        <rect id="svg_16" stroke="null" height="3.085714" width="37.000004" y="132.571428" x="853.999999" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#cbea1e"/>
-      </g> -->
     </g>
 
     <rect id="gameover-overlay" style="display:none" transform="translate(996,396) scale(1.0211693048477173,1.0152671337127686) translate(-996,-396) " width="900" height="300" fill="black" fill-opacity="0.9" y="11.00001" position="absolute" x="50" stroke-width="10"/>
@@ -765,8 +763,8 @@ $("audio")[3].play();
     </g>
 
   </svg>
-  <text id="score-text" font-size="80px"></text>
-  <text id="lives-text" font-size="80px"></text>
+  <text id="score-text" display="block" font-size="80px">Score is: </text>
+  <text id="lives-text" display="block" font-size="80px">Lives Left: </text>
 
 </body>
 </html>
