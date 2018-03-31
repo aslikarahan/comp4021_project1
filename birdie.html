@@ -7,7 +7,7 @@
    <link href="https://fonts.googleapis.com/css?family=Chicle|Oswald" rel="stylesheet">
   <script  src="jquery.svg.min.js"></script>
   <script  src="jquery.svganim.js"></script>
-<script> Score=0;
+<script> Score=0; EnemyY=109; Lives=5;
 </script>
   <style>
   body {
@@ -272,9 +272,38 @@
           if (xdist>-50 && xdist<40 && !(updist<0 && downdist<0)) {
                         gameover();
           }
+          if (Lives==0) {
+                        gameover();
+          }
           else
             requestAnimationFrame(checkGameover);
       }
+
+      function getHit() {
+        var birdiex = $("#birdie").css("transform");
+        birdiex = parseFloat(birdiex.split(" ")[4]);
+        var birdiey = $("#birdie").css("transform");
+        birdiey = parseFloat(birdiey.split(" ")[5]);
+        var enemyx = $("#enemy").css("transform");
+        enemyx = parseFloat(enemyx.split(" ")[4]);
+        birdiex=birdiex+100;
+        birdiey=birdiey+160;
+        enemyx=enemyx+920;
+
+        var distance = (birdiex-enemyx)*(birdiex-enemyx)+(birdiey-EnemyY)*(birdiey-EnemyY);
+        if (distance<2000 ) {
+          Lives--;
+          $("#lives-text-text").text(Lives);
+          hideEnemy();
+          requestAnimationFrame(getHit);
+
+        }
+        else
+        $("#lives-text-text").text(Lives);
+        // $("#enemy").show();
+
+            requestAnimationFrame(getHit);
+        }
 
 
   function makeObstacle() {
@@ -305,6 +334,7 @@
       $("#enemy").show();
     }, Math.random() * 1000);
 
+
   }
   function hideFood() {
 
@@ -325,6 +355,10 @@
   function hideEnemy() {
 
     // You need to start the obstacle animation after a random time here
+    $("#enemy").hide();
+    EnemyY = Math.random()*240+10;
+    $("#enemy").animate({svgY1: EnemyY}, 20);
+    $("#enemy").animate({svgY2: EnemyY}, 20);
 
     var r = Math.floor(Math.random() * 255);
 
@@ -332,14 +366,6 @@
 
     var b = Math.floor(Math.random() * 255);
     $("#enemy").css("stroke", 'rgb(' + r + ', ' + g + ' , ' + b + ')');
-
-
-    var y = Math.random()*240+10;
-    $("#enemy").animate({svgY1: y}, 20);
-    $("#enemy").animate({svgY2: y}, 20);
-
-    $("#enemy").hide();
-
     $("#enemy").css("animationPlayState", "paused");
     makeEnemy();
 
@@ -351,6 +377,7 @@ $("audio")[3].currentTime = 0;
 $("audio")[3].play();
     requestAnimationFrame(eatFood);
     requestAnimationFrame(checkGameover);
+    requestAnimationFrame(getHit);
 
 
     var pressed = [];
@@ -502,6 +529,8 @@ $("audio")[3].play();
       });
       $("#enemy").on("animationiteration", function () {
         hideEnemy();
+        requestAnimationFrame(getHit);
+
 
       });
 
@@ -737,6 +766,7 @@ $("audio")[3].play();
 
   </svg>
   <text id="score-text" font-size="80px"></text>
+  <text id="lives-text" font-size="80px"></text>
 
 </body>
 </html>
