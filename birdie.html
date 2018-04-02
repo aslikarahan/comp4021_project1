@@ -173,7 +173,8 @@
   }
   #timer{
     position: absolute;
-    right: 100px;
+    right: 150px;
+    top: 30px;
   }
   #explanation{
     margin-top: 0px;
@@ -200,8 +201,33 @@
   svg #restart:hover #restart-button{
     fill: #666;
   }
+  @keyframes addscore {
+  0%   {fill: white; font-size: 30px;}
+  50%  {fill: rgb(0, 80, 0); font-size: 50px;}
+  100% {fill: white; font-size:30px;}
+}
+@keyframes loselife {
+0%   {fill: white; font-size: 30px;}
+50%  {fill: red; font-size: 50px;}
+100% {fill: white; font-size:30px;}
+}
+  #score-panel{
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+  animation-name: addscore;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-play-state: paused;
+  }
+  #life-panel{
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+  animation-name: loselife;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-play-state: paused;
+  }
   </style>
   <script>
+  var isgameover = false;
   function eatFood() {
         var birdiex = $("#birdie").css("transform");
         birdiex = parseFloat(birdiex.split(" ")[4]);
@@ -217,8 +243,12 @@
         foodx=foodx+900;
         foody=foody-30;
         var distance = (birdiex-foodx)*(birdiex-foodx)+(birdiey-foody)*(birdiey-foody);
-        if (distance<2000 ) {
+        if (distance<2000 && !isgameover ) {
           Score++;
+          $("audio")[2].currentTime = 0;
+          $("audio")[2].play();
+          $("#score-panel").text(Score);
+          $("#score-panel").css("animationPlayState", "running");
           $("#score-text").text($("#score-text").text().split(" ")[0]+" "+Score);
           hideFood();
           requestAnimationFrame(eatFood);
@@ -232,17 +262,24 @@
             requestAnimationFrame(eatFood);
     }
     function gameover(){
-      $("#gameover").css("animationPlayState", "running");
-      $("#obstacle1").css("animationPlayState", "paused");
-      $("#obstacle2").css("animationPlayState", "paused");
-      $("#food").css("animationPlayState", "paused");
-      $("#birdie").css("animationPlayState", "paused");
-      $("#gameover-overlay").fadeIn();
-      $("#restart").fadeIn();
+      isgameover = true;
+      clearTimeout(counterTimeout);
       $("audio")[0].pause();
       //$("audio")[1].pause();
       $("audio")[1].currentTime = 0;
       $("audio")[1].play();
+
+      $("#gameover").css("animationPlayState", "running");
+      $("#obstacle1").css("animationPlayState", "paused");
+      $("#obstacle2").css("animationPlayState", "paused");
+      $("#enemy").css("animationPlayState", "paused");
+      $("#food").css("animationPlayState", "paused");
+      $("#birdie").css("animationPlayState", "paused");
+      $("#gameover-overlay").fadeIn();
+      $("#restart").fadeIn();
+      //$("audio")[0].pause();
+      //$("audio")[1].pause();
+
 
     }
 
@@ -293,8 +330,10 @@
         enemyx=enemyx+900;
 
         var distance = (birdiex-enemyx)*(birdiex-enemyx)+(birdiey-EnemyY)*(birdiey-EnemyY);
-        if (distance<800 ) {
+        if (distance<800 && !isgameover ) {
           Lives--;
+          $("#life-panel").text(Lives);
+          $("#life-panel").css("animationPlayState", "running");
           $("#lives-text").text($("#lives-text").text().split(" ")[0]+" "+Lives);
           hideEnemy();
           requestAnimationFrame(getHit);
@@ -375,8 +414,8 @@
 
   $(document).ready(function () {
     $("audio")[3].pause();
-$("audio")[3].currentTime = 0;
-$("audio")[3].play();
+    $("audio")[3].currentTime = 0;
+    $("audio")[3].play();
     requestAnimationFrame(eatFood);
     requestAnimationFrame(checkGameover);
     requestAnimationFrame(getHit);
@@ -467,7 +506,7 @@ $("audio")[3].play();
       }
 
       $(document).on("keydown", function (e) {
-        if (pressed[e.which]) return;
+        if (pressed[e.which] || isgameover) return;
         pressed[e.which] = true;
         switch (e.keyCode) {
           case 37:
@@ -535,6 +574,12 @@ $("audio")[3].play();
         requestAnimationFrame(checkGameover);
 
 
+      });
+      $("#score-panel").on("animationiteration", function() {
+          $("#score-panel").css("animationPlayState", "paused");
+      });
+      $("#life-panel").on("animationiteration", function() {
+          $("#life-panel").css("animationPlayState", "paused");
       });
       $("#enemy").on("animationiteration", function () {
         hideEnemy();
@@ -650,6 +695,10 @@ $("audio")[3].play();
           </div>
         </div>
         <svg id="play-page" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400">
+          <text font-size="10px" x="40" y="43">Score</text>
+          <text id="score-panel" font-size="30px" x="80" y="50">0</text>
+          <text font-size="10px" x="40" y="83">Lives</text>
+          <text id="life-panel" font-size="30px" x="80" y="90">5</text>
           <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
           <g id="playarea">
             <defs>
@@ -752,7 +801,7 @@ $("audio")[3].play();
               <line fill="none" stroke="#000000" stroke-width="4" x1="921" y1="109" x2="973" y2="108" id="enemy"/>
     </g>
 
-    <rect id="gameover-overlay" style="display:none" transform="translate(996,396) scale(1.0211693048477173,1.0152671337127686) translate(-996,-396) " width="900" height="300" fill="black" fill-opacity="0.9" y="11.00001" position="absolute" x="50" stroke-width="10"/>
+    <rect id="gameover-overlay" style="display:none"stroke="#007f00" id="svg_2" height="300" width="900" y="10" x="30" stroke-width="10" opacity="0.9"/>
     <g id="gameover-container">
 
       <text id="gameover" x="0" y="-50" fill="#aaa" font-size="80px" text-anchor="middle" >Game Over</text>
